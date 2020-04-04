@@ -5,9 +5,9 @@ FROM christophshyper/docker-terragrunt:latest as builder
 FROM alpine:3.11
 
 # For http://label-schema.org/rc1/#build-time-labels
-ARG VERSION=v0.0
-ARG VCS_REF=abcdef1
 ARG BUILD_DATE=2020-04-01T00:00:00Z
+ARG VCS_REF=abcdef1
+ARG VERSION=v0.0
 LABEL \
     com.github.actions.author="Krzysztof Szyper <biotyk@mail.com>" \
     com.github.actions.color="white" \
