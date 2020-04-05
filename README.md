@@ -31,12 +31,13 @@ Input Variable | Required | Default |Description
 :--- | :---: | :---: | :---
 dir_filter | No | `*` | Prefixes or sub-directories to search for Terraform modules. Use comma as separator.
 fail_on_changes | No | `true` | Whether TFLint should fail whole action.
-tflint_config | No | `.tflint.hcl` | Location from repository root to TFLint config file.
+tflint_config | No | `.tflint.hcl` | Location from repository root to TFLint config file. Disables `tflint_params`.
+tflint_params | No | `` | Parameters passed to TFLint binary. See [TFLint](https://github.com/terraform-linters/tflint) for details.
 
 
 ## Examples
 
-By default fail if lint errors found.
+By default fail if lint errors found in any subdirectory.
 ```yaml
 name: Check TFLint
 on:
@@ -71,4 +72,24 @@ jobs:
       with:
         tflint_config: modules/.tflint.hcl
         dir_filter: modules/aws,modules/gcp
+```
+
+Use deep check (need cloud credentials) and treat all directories under `modules` as Terraform modules.
+```yaml
+name: Check TFLint with custom config
+on:
+  push:
+    branches:
+      - "**"
+jobs:
+  format-hcl:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Check linting of Terraform modules
+      uses: docker://christophshyper/action-tflint:latest
+      with:
+        tflint_params: "--module --deep"
+        dir_filter: modules
 ```

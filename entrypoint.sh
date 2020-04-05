@@ -2,28 +2,23 @@
 
 RETURN=0
 
+WORK_DIR=/github/workspace
+
 # Split dir_filter into array
 IFS=',' read -r -a ARRAY <<< "${INPUT_DIR_FILTER}"
 
 # Go through all dir prefixes
-for PREFIX in "${ARRAY[@]}"
-do
+for PREFIX in "${ARRAY[@]}"; do
     # Go through all matching directories
     for DIRECTORY in $(ls -d ${PREFIX}*/); do
         cd ${DIRECTORY}
         echo -e "\nDirectory: ${DIRECTORY}"
-        if [[ -f "/github/workspace/${TFLINT_CONFIG}" ]]; then
-            tflint -c "/github/workspace/${TFLINT_CONFIG}"
-            if [[ $? != 0 ]]; then
-                RETURN=$?
-            fi
+        if [[ -f "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" ]]; then
+            tflint -c "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" || RETURN=1
         else
-            tflint
-            if [[ $? != 0 ]]; then
-                RETURN=$?
-            fi
+            tflint ${INPUT_TFLINT_PARAMS} || RETURN=1
         fi
-        cd -
+        cd ${WORK_DIR}
     done
 done
 
