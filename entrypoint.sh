@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+RETURN=0
 
 # Split dir_filter into array
 IFS=',' read -r -a ARRAY <<< "${INPUT_DIR_FILTER}"
@@ -14,9 +14,17 @@ do
         echo -e "\nDirectory: ${DIRECTORY}"
         if [[ -f "/github/workspace/${TFLINT_CONFIG}" ]]; then
             tflint -c "/github/workspace/${TFLINT_CONFIG}"
+            if [[ $? != 0 ]]; then
+                RETURN=$?
+            fi
         else
             tflint
+            if [[ $? != 0 ]]; then
+                RETURN=$?
+            fi
         fi
         cd -
     done
 done
+
+exit ${RETURN}
