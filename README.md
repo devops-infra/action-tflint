@@ -11,7 +11,7 @@ Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://gi
 
 ## Badge swag
 [
-![GitHub](https://img.shields.io/badge/github-ChristophShyper%2Faction--ftflint-brightgreen.svg?style=flat-square&logo=github)
+![GitHub](https://img.shields.io/badge/github-ChristophShyper%2Faction--tflint-brightgreen.svg?style=flat-square&logo=github)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/christophshyper/action-tflint?color=brightgreen&label=Code%20size&style=flat-square&logo=github)
 ![GitHub last commit](https://img.shields.io/github/last-commit/christophshyper/action-tflint?color=brightgreen&label=Last%20commit&style=flat-square&logo=github)
 ![On each commit push](https://img.shields.io/github/workflow/status/christophshyper/action-tflint/On%20each%20commit%20push?color=brightgreen&label=Actions&logo=github&style=flat-square)
