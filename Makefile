@@ -26,6 +26,7 @@ TXT_GREEN := $(shell tput setaf 2)
 TXT_YELLOW := $(shell tput setaf 3)
 TXT_RESET := $(shell tput sgr0)
 
+# Buid docker image
 build:
 	$(info $(NL)$(TXT_GREEN) == STARTING BUILD ==$(TXT_RESET))
 	$(info $(TXT_GREEN)Release tag:$(TXT_YELLOW)        $(VERSION)$(TXT_RESET))
@@ -39,6 +40,7 @@ build:
 		--build-arg VERSION=$(VERSION) \
 		--file=Dockerfile \
 		--tag=$(DOCKER_NAME):$(VERSION) .
+# Push to DockerHub if it's master branch
 ifeq ($(CURRENT_BRANCH),$(RELEASE_BRANCH))
 	$(info $(NL)$(TXT_GREEN) == STARTING DEPLOYMENT == $(TXT_RESET))
 	$(info $(NL)$(TXT_GREEN)Logging to DockerHub$(TXT_RESET))
