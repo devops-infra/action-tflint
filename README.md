@@ -8,6 +8,7 @@ So it's main use will be everywhere where [Terraform](https://github.com/hashico
 
 Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://github.com/terraform-linters/tflint).
 
+
 ## Badge swag
 [
 ![GitHub](https://img.shields.io/badge/github-ChristophShyper%2Faction--ftflint-brightgreen.svg?style=flat-square&logo=github)
@@ -24,9 +25,18 @@ Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://gi
 ](https://hub.docker.com/r/christophshyper/action-tflint "shields.io")
 
 
+## Usage
+
+Input Variable | Required | Default |Description
+:--- | :---: | :---: | :---
+dir_filter | No | `*` | Prefixes or sub-directories to search for Terraform modules. Use comma as separator.
+fail_on_changes | No | `true` | Whether TFLint should fail whole action.
+tflint_config | No | `.tflint.hcl` | Location from repository root to TFLint config file.
+
+
 ## Examples
 
-Action can fail if malformatted files will be found and no changes to repository will be done.
+By default fail if lint errors found.
 ```yaml
 name: Check TFLint
 on:
@@ -41,4 +51,24 @@ jobs:
       uses: actions/checkout@v2
     - name: Check linting of Terraform files
       uses: docker://christophshyper/action-tflint:latest
+```
+
+Use different location for TFLint config file and parse only `aws*` and `gcp*` modules in `modules/` directory.
+```yaml
+name: Check TFLint with custom config
+on:
+  push:
+    branches:
+      - "**"
+jobs:
+  format-hcl:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Check linting of Terraform modules
+      uses: docker://christophshyper/action-tflint:latest
+      with:
+        tflint_config: modules/.tflint.hcl
+        dir_filter: modules/aws,modules/gcp
 ```
