@@ -20,7 +20,7 @@ inputs:
     default: ""
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "docker://christophshyper/action-tflint:latest"
 branding:
   color: "white"
   icon: "wind"
