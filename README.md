@@ -1,10 +1,12 @@
 # Lint Terraform files
 
-Dockerized ([christophshyper/action-tflint](https://hub.docker.com/repository/docker/christophshyper/action-tflint)) GitHub Action automatically linting Terraform modules.
+GitHub Action automatically linting Terraform modules.
+
+Dockerized as [christophshyper/action-tflint](https://hub.docker.com/repository/docker/christophshyper/action-tflint).
 
 Container is a stripped down image of my other creation - [ChristophShyper/docker-terragrunt](https://github.com/ChristophShyper/docker-terragrunt) - framework for managing Infrastructure-as-a-Code.
 
-So it's main use will be everywhere where [Terraform](https://github.com/hashicorp/terraform) is used and is great for statically checking modules' sources.
+So it's main use will be everywhere where [Terraform](https://github.com/hashicorp/terraform) is used and is great for statically or actively checking modules' sources.
 
 Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://github.com/terraform-linters/tflint).
 
@@ -14,18 +16,29 @@ Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://gi
 ![GitHub](https://img.shields.io/badge/github-ChristophShyper%2Faction--tflint-brightgreen.svg?style=flat-square&logo=github)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/christophshyper/action-tflint?color=brightgreen&label=Code%20size&style=flat-square&logo=github)
 ![GitHub last commit](https://img.shields.io/github/last-commit/christophshyper/action-tflint?color=brightgreen&label=Last%20commit&style=flat-square&logo=github)
-![On each commit push](https://img.shields.io/github/workflow/status/christophshyper/action-tflint/On%20each%20commit%20push?color=brightgreen&label=Actions&logo=github&style=flat-square)
 ](https://github.com/christophshyper/action-tflint "shields.io")
-
+[![Push to master](https://img.shields.io/github/workflow/status/christophshyper/action-tflint/Push%20to%20master?color=brightgreen&label=Master%20branch&logo=github&style=flat-square)
+](https://github.com/ChristophShyper/action-tflint/actions?query=workflow%3A%22Push+to+master%22)
+[![Push to other](https://img.shields.io/github/workflow/status/christophshyper/action-tflint/Push%20to%20other?color=brightgreen&label=Pull%20requests&logo=github&style=flat-square)
+](https://github.com/ChristophShyper/action-tflint/actions?query=workflow%3A%22Push+to+other%22)
+<br>
 [
 ![DockerHub](https://img.shields.io/badge/docker-christophshyper%2Faction--tflint-blue.svg?style=flat-square&logo=docker)
-![Dockerfile size](https://img.shields.io/github/size/christophshyper/action-tflint/Dockerfile?label=Dockerfile&style=flat-square&logo=docker)
+![Dockerfile size](https://img.shields.io/github/size/christophshyper/action-tflint/Dockerfile?label=Dockerfile%20size&style=flat-square&logo=docker)
+![Image size](https://img.shields.io/docker/image-size/christophshyper/action-tflint/latest?label=Image%20size&style=flat-square&logo=docker)
 ![Docker Pulls](https://img.shields.io/docker/pulls/christophshyper/action-tflint?color=blue&label=Pulls&logo=docker&style=flat-square)
 ![Docker version](https://img.shields.io/docker/v/christophshyper/action-tflint?color=blue&label=Version&logo=docker&style=flat-square)
 ](https://hub.docker.com/r/christophshyper/action-tflint "shields.io")
 
 
-## Usage
+## Reference
+
+```yaml
+    - name: Run the Action
+      uses: ChristophShyper/action-tflint@master
+      with:
+        dir_filter: modules
+```
 
 Input Variable | Required | Default |Description
 :--- | :---: | :---: | :---
@@ -37,7 +50,7 @@ tflint_params | No | `` | Parameters passed to TFLint binary. See [TFLint](https
 
 ## Examples
 
-By default fail if lint errors found in any subdirectory.
+By default fail if lint errors found in any subdirectory. Run the Action via GitHub.
 ```yaml
 name: Check TFLint
 on:
@@ -51,10 +64,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Check linting of Terraform files
-      uses: docker://christophshyper/action-tflint:latest
+      uses: ChristophShyper/action-tflint@master
 ```
 
-Use different location for TFLint config file and parse only `aws*` and `gcp*` modules in `modules/` directory.
+Use different location for TFLint config file and parse only `aws*` and `gcp*` modules in `modules/` directory. Run the Action via GitHub.
 ```yaml
 name: Check TFLint with custom config
 on:
@@ -68,13 +81,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Check linting of Terraform modules
-      uses: docker://christophshyper/action-tflint:latest
+      uses: ChristophShyper/action-tflint@master
       with:
         tflint_config: modules/.tflint.hcl
         dir_filter: modules/aws,modules/gcp
 ```
 
-Use deep check (need cloud credentials) and treat all directories under `modules` as Terraform modules.
+Use deep check (need cloud credentials) and treat all directories under `modules` as Terraform modules. Run the Action via DockerHub.
 ```yaml
 name: Check TFLint with custom config
 on:

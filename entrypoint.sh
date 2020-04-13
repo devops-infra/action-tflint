@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-RETURN=0
+# Return code
+RET_CODE=0
 
 WORK_DIR=/github/workspace
 
@@ -14,12 +15,12 @@ for PREFIX in "${ARRAY[@]}"; do
         cd ${DIRECTORY}
         echo -e "\nDirectory: ${DIRECTORY}"
         if [[ -f "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" ]]; then
-            tflint -c "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" || RETURN=1
+            tflint -c "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" || RET_CODE=1
         else
-            tflint ${INPUT_TFLINT_PARAMS} || RETURN=1
+            tflint ${INPUT_TFLINT_PARAMS} || RET_CODE=1
         fi
         cd ${WORK_DIR}
     done
 done
 
-exit ${RETURN}
+exit ${RET_CODE}
