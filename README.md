@@ -13,18 +13,18 @@ Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://gi
 
 ## Badge swag
 [
-![GitHub](https://img.shields.io/badge/github-ChristophShyper%2Faction--tflint-brightgreen.svg?style=flat-square&logo=github)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/christophshyper/action-tflint?color=brightgreen&label=Code%20size&style=flat-square&logo=github)
-![GitHub last commit](https://img.shields.io/github/last-commit/christophshyper/action-tflint?color=brightgreen&label=Last%20commit&style=flat-square&logo=github)
-](https://github.com/christophshyper/action-tflint "shields.io")
-[![Push to master](https://img.shields.io/github/workflow/status/christophshyper/action-tflint/Push%20to%20master?color=brightgreen&label=Master%20branch&logo=github&style=flat-square)
-](https://github.com/ChristophShyper/action-tflint/actions?query=workflow%3A%22Push+to+master%22)
-[![Push to other](https://img.shields.io/github/workflow/status/christophshyper/action-tflint/Push%20to%20other?color=brightgreen&label=Pull%20requests&logo=github&style=flat-square)
-](https://github.com/ChristophShyper/action-tflint/actions?query=workflow%3A%22Push+to+other%22)
+![GitHub](https://img.shields.io/badge/github-devops--infra%2Faction--tflint-brightgreen.svg?style=flat-square&logo=github)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/devops-infra/action-tflint?color=brightgreen&label=Code%20size&style=flat-square&logo=github)
+![GitHub last commit](https://img.shields.io/github/last-commit/devops-infra/action-tflint?color=brightgreen&label=Last%20commit&style=flat-square&logo=github)
+](https://github.com/devops-infra/action-tflint "shields.io")
+[![Push to master](https://img.shields.io/github/workflow/status/devops-infra/action-tflint/Push%20to%20master?color=brightgreen&label=Master%20branch&logo=github&style=flat-square)
+](https://github.com/devops-infra/action-tflint/actions?query=workflow%3A%22Push+to+master%22)
+[![Push to other](https://img.shields.io/github/workflow/status/devops-infra/action-tflint/Push%20to%20other?color=brightgreen&label=Pull%20requests&logo=github&style=flat-square)
+](https://github.com/devops-infra/action-tflint/actions?query=workflow%3A%22Push+to+other%22)
 <br>
 [
 ![DockerHub](https://img.shields.io/badge/docker-christophshyper%2Faction--tflint-blue.svg?style=flat-square&logo=docker)
-![Dockerfile size](https://img.shields.io/github/size/christophshyper/action-tflint/Dockerfile?label=Dockerfile%20size&style=flat-square&logo=docker)
+![Dockerfile size](https://img.shields.io/github/size/devops-infra/action-tflint/Dockerfile?label=Dockerfile%20size&style=flat-square&logo=docker)
 ![Image size](https://img.shields.io/docker/image-size/christophshyper/action-tflint/latest?label=Image%20size&style=flat-square&logo=docker)
 ![Docker Pulls](https://img.shields.io/docker/pulls/christophshyper/action-tflint?color=blue&label=Pulls&logo=docker&style=flat-square)
 ![Docker version](https://img.shields.io/docker/v/christophshyper/action-tflint?color=blue&label=Version&logo=docker&style=flat-square)
@@ -35,7 +35,7 @@ Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://gi
 
 ```yaml
     - name: Run the Action
-      uses: ChristophShyper/action-tflint@master
+      uses: devops-infra/action-tflint@master
       with:
         dir_filter: modules
 ```
@@ -64,7 +64,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Check linting of Terraform files
-      uses: ChristophShyper/action-tflint@master
+      uses: devops-infra/action-tflint@master
 ```
 
 Use different location for TFLint config file and parse only `aws*` and `gcp*` modules in `modules/` directory. Run the Action via GitHub.
@@ -81,7 +81,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Check linting of Terraform modules
-      uses: ChristophShyper/action-tflint@master
+      uses: devops-infra/action-tflint@master
       with:
         tflint_config: modules/.tflint.hcl
         dir_filter: modules/aws,modules/gcp
@@ -101,7 +101,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Check linting of Terraform modules
-      uses: docker://christophshyper/action-tflint:latest
+      uses: devops-infra/action-tflint@master
       with:
         tflint_params: "--module --deep"
         dir_filter: modules

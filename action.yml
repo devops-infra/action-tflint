@@ -1,26 +1,26 @@
-name: "Lint Terraform files"
+name: Lint Terraform files
 author: "Krzysztof Szyper <biotyk@mail.com>"
-description: "GitHub Action that will run TFlint on Terraform files."
+description: GitHub Action that will run TFlint on Terraform files
 inputs:
   fail_on_changes:
-    description: "Whether action should fail if errors found. Default true."
+    description: Whether action should fail if errors found. Default true
     required: false
     default: "true"
   dir_filter:
-    description: "Filter for directories to check. Check all by default."
+    description: Filter for directories to check. Check all by default
     required: false
     default: "*"
   tflint_config:
-    description: "Location of TFLint config file. Default .tflint.hcl."
+    description: Location of TFLint config file. Default .tflint.hcl
     required: false
     default: ".tflint.hcl"
   tflint_params:
-    description: "Parameters passed to TFLint."
+    description: Parameters passed to TFLint
     required: false
     default: ""
 runs:
-  using: "docker"
-  image: "docker://christophshyper/action-tflint:latest"
+  using: docker
+  image: docker://christophshyper/action-tflint:latest
 branding:
-  color: "white"
-  icon: "wind"
+  color: purple
+  icon: upload-cloud
