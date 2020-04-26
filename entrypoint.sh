@@ -12,7 +12,7 @@ IFS=',' read -r -a ARRAY <<< "${INPUT_DIR_FILTER}"
 for PREFIX in "${ARRAY[@]}"; do
     # Go through all matching directories
     for DIRECTORY in "${PREFIX}"*; do
-        [[ -d "${DIRECTORY}" ]] || RET_CODE=1
+        [[ -d "${DIRECTORY}" ]] || break
         cd "${WORK_DIR}/${DIRECTORY}" || RET_CODE=1
         echo -e "\nDirectory: ${DIRECTORY}"
         if [[ -f "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" ]]; then
