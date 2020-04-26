@@ -46,12 +46,12 @@ LABEL \
   repository="${REPO_URL}"
 
 # Copy all needed files
-COPY --from=builder /usr/bin/tflint /usr/bin/
+COPY --from=builder /usr/bin/tflint /usr/bin/terraform /usr/bin/
 COPY entrypoint.sh /
 
 # Install needed packages
 RUN set -eux \
-  && chmod +x /entrypoint.sh /usr/bin/tflint \
+  && chmod +x /entrypoint.sh /usr/bin/tflint /usr/bin/terraform \
   && apk update --no-cache \
   && apk upgrade --no-cache \
   && apk add --no-cache bash \
