@@ -1,5 +1,5 @@
-name: Lint Terraform files
-author: "Krzysztof Szyper <biotyk@mail.com>"
+name: GitHub Action linting Terraform files
+author: Krzysztof Szyper / ChristophShyper / biotyk@mail.com
 description: GitHub Action that will run TFlint on Terraform files
 inputs:
   fail_on_changes:
