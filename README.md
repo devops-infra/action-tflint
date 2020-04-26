@@ -1,6 +1,6 @@
-# Lint Terraform files
+# GitHub Action linting Terraform files
 
-GitHub Action automatically linting Terraform modules.
+**GitHub Action that will run TFlint on Terraform files.**
 
 Dockerized as [christophshyper/action-tflint](https://hub.docker.com/repository/docker/christophshyper/action-tflint).
 
@@ -12,20 +12,21 @@ Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://gi
 
 
 ## Badge swag
-[
-![GitHub](https://img.shields.io/badge/github-devops--infra%2Faction--tflint-brightgreen.svg?style=flat-square&logo=github)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/devops-infra/action-tflint?color=brightgreen&label=Code%20size&style=flat-square&logo=github)
-![GitHub last commit](https://img.shields.io/github/last-commit/devops-infra/action-tflint?color=brightgreen&label=Last%20commit&style=flat-square&logo=github)
-](https://github.com/devops-infra/action-tflint "shields.io")
-[![Push to master](https://github.com/devops-infra/action-tflint/workflows/Push%20to%20master/badge.svg)](https://github.com/devops-infra/action-tflint/actions?query=workflow%3A%22Push+to+master%22)
-[![Push to other](https://github.com/devops-infra/action-tflint/workflows/Push%20to%20other/badge.svg)](https://github.com/devops-infra/action-tflint/actions?query=workflow%3A%22Push+to+other%22)
+[![Master branch](https://github.com/devops-infra/action-tflint/workflows/Master%20branch/badge.svg)](https://github.com/devops-infra/action-tflint/actions?query=workflow%3A%22Master+branch%22)
+[![Other branches](https://github.com/devops-infra/action-tflint/workflows/Other%20branches/badge.svg)](https://github.com/devops-infra/action-tflint/actions?query=workflow%3A%22Other+branches%22)
 <br>
 [
-![DockerHub](https://img.shields.io/badge/docker-christophshyper%2Faction--tflint-blue.svg?style=flat-square&logo=docker)
-![Dockerfile size](https://img.shields.io/github/size/devops-infra/action-tflint/Dockerfile?label=Dockerfile%20size&style=flat-square&logo=docker)
-![Image size](https://img.shields.io/docker/image-size/christophshyper/action-tflint/latest?label=Image%20size&style=flat-square&logo=docker)
-![Docker Pulls](https://img.shields.io/docker/pulls/christophshyper/action-tflint?color=blue&label=Pulls&logo=docker&style=flat-square)
-![Docker version](https://img.shields.io/docker/v/christophshyper/action-tflint?color=blue&label=Version&logo=docker&style=flat-square)
+![GitHub repo](https://img.shields.io/badge/GitHub-devops--infra%2Faction--tflint-blueviolet.svg?style=plastic&logo=github)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/devops-infra/action-tflint?color=blueviolet&label=Code%20size&style=plastic&logo=github)
+![GitHub last commit](https://img.shields.io/github/last-commit/devops-infra/action-tflint?color=blueviolet&logo=github&style=plastic&label=Last%20commit)
+![GitHub license](https://img.shields.io/github/license/devops-infra/action-tflint?color=blueviolet&logo=github&style=plastic&label=License)
+](https://github.com/devops-infra/action-tflint "shields.io")
+<br>
+[
+![DockerHub](https://img.shields.io/badge/DockerHub-christophshyper%2Faction--tflint-blue.svg?style=plastic&logo=docker)
+![Docker version](https://img.shields.io/docker/v/christophshyper/action-tflint?color=blue&label=Version&logo=docker&style=plastic)
+![Image size](https://img.shields.io/docker/image-size/christophshyper/action-tflint/latest?label=Image%20size&style=plastic&logo=docker)
+![Docker Pulls](https://img.shields.io/docker/pulls/christophshyper/action-tflint?color=blue&label=Pulls&logo=docker&style=plastic)
 ](https://hub.docker.com/r/christophshyper/action-tflint "shields.io")
 
 
