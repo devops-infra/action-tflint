@@ -2,9 +2,9 @@
 
 **GitHub Action that will run TFlint on Terraform files.**
 
-Dockerized as [christophshyper/action-tflint](https://hub.docker.com/repository/docker/christophshyper/action-tflint).
+Dockerized as [devopsinfra/action-tflint](https://hub.docker.com/repository/docker/devopsinfra/action-tflint).
 
-Container is a stripped down image of my other creation - [ChristophShyper/docker-terragrunt](https://github.com/ChristophShyper/docker-terragrunt) - framework for managing Infrastructure-as-a-Code.
+Container is a stripped down image of my other creation - [devops-infra/docker-terragrunt](https://github.com/devops-infra/docker-terragrunt) - framework for managing Infrastructure-as-a-Code.
 
 So it's main use will be everywhere where [Terraform](https://github.com/hashicorp/terraform) is used and is great for statically or actively checking modules' sources.
 
@@ -23,11 +23,11 @@ Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://gi
 ](https://github.com/devops-infra/action-tflint "shields.io")
 <br>
 [
-![DockerHub](https://img.shields.io/badge/DockerHub-christophshyper%2Faction--tflint-blue.svg?style=plastic&logo=docker)
-![Docker version](https://img.shields.io/docker/v/christophshyper/action-tflint?color=blue&label=Version&logo=docker&style=plastic)
-![Image size](https://img.shields.io/docker/image-size/christophshyper/action-tflint/latest?label=Image%20size&style=plastic&logo=docker)
-![Docker Pulls](https://img.shields.io/docker/pulls/christophshyper/action-tflint?color=blue&label=Pulls&logo=docker&style=plastic)
-](https://hub.docker.com/r/christophshyper/action-tflint "shields.io")
+![DockerHub](https://img.shields.io/badge/DockerHub-devopsinfra%2Faction--tflint-blue.svg?style=plastic&logo=docker)
+![Docker version](https://img.shields.io/docker/v/devopsinfra/action-tflint?color=blue&label=Version&logo=docker&style=plastic)
+![Image size](https://img.shields.io/docker/image-size/devopsinfra/action-tflint/latest?label=Image%20size&style=plastic&logo=docker)
+![Docker Pulls](https://img.shields.io/docker/pulls/devopsinfra/action-tflint?color=blue&label=Pulls&logo=docker&style=plastic)
+](https://hub.docker.com/r/devopsinfra/action-tflint "shields.io")
 
 
 ## Reference
