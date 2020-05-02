@@ -20,7 +20,7 @@ inputs:
     default: ""
 runs:
   using: docker
-  image: docker://christophshyper/action-tflint:latest
+  image: docker://devopsinfra/action-tflint:latest
 branding:
   color: purple
   icon: upload-cloud
