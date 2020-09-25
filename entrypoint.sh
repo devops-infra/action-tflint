@@ -16,18 +16,22 @@ for PREFIX in "${ARRAY[@]}"; do
         cd "${WORK_DIR}/${DIRECTORY}" || RET_CODE=1
         echo -e "\nDirectory: ${DIRECTORY}"
         if [[ -f "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" ]]; then
-          terraform init
+          if [[ "${INPUT_RUN_INIT}" == "true" ]]; then
+            terraform init
+          fi
           tflint -c "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" || RET_CODE=1
         else
-          terraform init
+          if [[ "${INPUT_RUN_INIT}" == "true" ]]; then
+            terraform init
+          fi
           tflint "${INPUT_TFLINT_PARAMS}" || RET_CODE=1
         fi
-        cd ${WORK_DIR} || RET_CODE=1
+        cd "${WORK_DIR}" || RET_CODE=1
     done
 done
 
 # Finish
-if [[ ${RET_CODE} != "0" ]]; then
+if [[ "${RET_CODE}" != "0" ]]; then
   echo -e "\n[ERROR] Check log for errors."
   exit 1
 else
