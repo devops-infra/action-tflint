@@ -55,6 +55,7 @@ RUN set -eux \
   && apk update --no-cache \
   && apk upgrade --no-cache \
   && apk add --no-cache bash \
+  && apk add --no-cache git \
   && rm -rf /var/cache/* \
   && rm -rf /root/.cache/*
 
