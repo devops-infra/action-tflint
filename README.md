@@ -39,12 +39,12 @@ Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://gi
         dir_filter: modules
 ```
 
-Input Variable | Required | Default |Description
-:--- | :---: | :---: | :---
-dir_filter | No | `*` | Prefixes or sub-directories to search for Terraform modules. Use comma as separator.
-fail_on_changes | No | `true` | Whether TFLint should fail whole action.
-tflint_config | No | `.tflint.hcl` | Location from repository root to TFLint config file. Disables `tflint_params`.
-tflint_params | No | `` | Parameters passed to TFLint binary. See [TFLint](https://github.com/terraform-linters/tflint) for details.
+| Input Variable  | Required | Default       | Description                                                                                                |
+| --------------- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------- |
+| dir_filter      | No       | `*`           | Prefixes or sub-directories to search for Terraform modules. Use comma as separator.                       |
+| fail_on_changes | No       | `true`        | Whether TFLint should fail whole action.                                                                   |
+| tflint_config   | No       | `.tflint.hcl` | Location from repository root to TFLint config file. Disables `tflint_params`.                             |
+| tflint_params   | No       | ``            | Parameters passed to TFLint binary. See [TFLint](https://github.com/terraform-linters/tflint) for details. |
 
 
 ## Examples
