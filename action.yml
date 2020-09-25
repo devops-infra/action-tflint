@@ -3,21 +3,25 @@ author: Krzysztof Szyper / ChristophShyper / biotyk@mail.com
 description: GitHub Action that will run TFlint on Terraform files
 inputs:
   fail_on_changes:
-    description: Whether action should fail if errors found. Default true
+    description: Whether the action should fail if errors found. Defaults totrue.
     required: false
     default: "true"
   dir_filter:
-    description: Filter for directories to check. Check all by default
+    description: Filter for directories to check. Check all by default.
     required: false
     default: "*"
   tflint_config:
-    description: Location of TFLint config file. Default .tflint.hcl
+    description: Location of TFLint config file. Defaults to .tflint.hcl.
     required: false
     default: ".tflint.hcl"
   tflint_params:
-    description: Parameters passed to TFLint
+    description: Parameters passed to TFLint. Defaults to none.
     required: false
     default: ""
+  run_init:
+    description: Whether the action should run `terraform init`. Defaults to true.
+    required: false
+    default: "true"
 runs:
   using: docker
   image: docker://devopsinfra/action-tflint:latest

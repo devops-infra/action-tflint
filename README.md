@@ -45,7 +45,7 @@ Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://gi
 | fail_on_changes | No       | `true`        | Whether TFLint should fail whole action.                                                                   |
 | tflint_config   | No       | `.tflint.hcl` | Location from repository root to TFLint config file. Disables `tflint_params`.                             |
 | tflint_params   | No       | ``            | Parameters passed to TFLint binary. See [TFLint](https://github.com/terraform-linters/tflint) for details. |
-
+| run_init        | No       | `true`        | Whether the action should run `terraform init`. Defaults to true.                                          |
 
 ## Examples
 
