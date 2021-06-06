@@ -50,16 +50,15 @@ COPY --from=builder /usr/bin/tflint /usr/bin/terraform /usr/bin/
 COPY entrypoint.sh /
 
 # Install needed packages
-RUN set -eux \
-  && chmod +x /entrypoint.sh /usr/bin/tflint /usr/bin/terraform \
-  && apk update --no-cache \
-  && apk upgrade --no-cache \
-  && apk add --no-cache bash \
-  && apk add --no-cache git \
-  && rm -rf /var/cache/* \
-  && rm -rf /root/.cache/*
+RUN set -eux ;\
+  chmod +x /entrypoint.sh /usr/bin/tflint /usr/bin/terraform ;\
+  apk update --no-cache ;\
+  apk add --no-cache bash=5.0.11-r1 ;\
+  apk add --no-cache git=2.24.4-r0 ;\
+  rm -rf /var/cache/* ;\
+  rm -rf /root/.cache/*
 
 # Finish up
-CMD tflint -v
+CMD ["tflint -v"]
 WORKDIR /github/workspace
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
