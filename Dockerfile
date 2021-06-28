@@ -1,8 +1,8 @@
 # Instead of building from scratch pull my other docker image
-FROM devopsinfra/docker-terragrunt:tf-0.14.4-tg-0.27.1 as builder
+FROM devopsinfra/docker-terragrunt:tf-1.0.1-tg-0.31.0 as builder
 
 # Use a clean tiny image to store artifacts in
-FROM alpine:3.11
+FROM alpine:3.14
 
 # Labels for http://label-schema.org/rc1/#build-time-labels
 # And for https://github.com/opencontainers/image-spec/blob/master/annotations.md
@@ -53,8 +53,9 @@ COPY entrypoint.sh /
 RUN set -eux ;\
   chmod +x /entrypoint.sh /usr/bin/tflint /usr/bin/terraform ;\
   apk update --no-cache ;\
-  apk add --no-cache bash=5.0.11-r1 ;\
-  apk add --no-cache git=2.24.4-r0 ;\
+  apk add --no-cache \
+    bash~=5.1.4 \
+    git~=2.32.0 ;\
   rm -rf /var/cache/* ;\
   rm -rf /root/.cache/*
 
