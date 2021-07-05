@@ -34,7 +34,7 @@ Main action is using [wata727](https://github.com/wata727)'s [TFLint](https://gi
 
 ```yaml
     - name: Run the Action
-      uses: devops-infra/action-tflint@v0.3
+      uses: devops-infra/action-tflint@0.3
       with:
         dir_filter: modules
 ```
@@ -63,7 +63,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Check linting of Terraform files
-      uses: devops-infra/action-tflint@v0.3
+      uses: devops-infra/action-tflint@0.3
 ```
 
 Use different location for TFLint config file and parse only `aws*` and `gcp*` modules in `modules/` directory. Run the Action via GitHub.
@@ -80,7 +80,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Check linting of Terraform modules
-      uses: devops-infra/action-tflint@v0.3
+      uses: devops-infra/action-tflint@0.3
       with:
         tflint_config: modules/.tflint.hcl
         dir_filter: modules/aws,modules/gcp
@@ -100,7 +100,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Check linting of Terraform modules
-      uses: devops-infra/action-tflint@v0.3
+      uses: devops-infra/action-tflint@0.3
       with:
         tflint_params: "--module --deep"
         dir_filter: modules
