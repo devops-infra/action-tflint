@@ -55,7 +55,7 @@ RUN set -eux ;\
   apk update --no-cache ;\
   apk add --no-cache \
     bash~=5.1.8 \
-    git~=2.34.0 ;\
+    git~=2.34.1 ;\
   rm -rf /var/cache/* ;\
   rm -rf /root/.cache/*
 
