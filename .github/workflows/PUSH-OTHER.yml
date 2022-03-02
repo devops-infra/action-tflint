@@ -47,7 +47,6 @@ jobs:
 
   build:
     name: Build image
-    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
