@@ -2,7 +2,7 @@
 FROM devopsinfra/docker-terragrunt:tf-1.0.1-tg-0.31.0 as builder
 
 # Use a clean tiny image to store artifacts in
-FROM alpine:3.15.1
+FROM alpine:3.15.2
 
 # Labels for http://label-schema.org/rc1/#build-time-labels
 # And for https://github.com/opencontainers/image-spec/blob/master/annotations.md
