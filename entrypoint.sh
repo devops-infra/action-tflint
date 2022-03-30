@@ -19,12 +19,12 @@ for PREFIX in "${ARRAY[@]}"; do
           if [[ "${INPUT_RUN_INIT}" == "true" ]]; then
             terraform init
           fi
-          tflint -c "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" || RET_CODE=1
+          tflint --init && tflint -c "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" || RET_CODE=1
         else
           if [[ "${INPUT_RUN_INIT}" == "true" ]]; then
             terraform init
           fi
-          tflint "${INPUT_TFLINT_PARAMS}" || RET_CODE=1
+          tflint --init && tflint "${INPUT_TFLINT_PARAMS}" || RET_CODE=1
         fi
         cd "${WORK_DIR}" || RET_CODE=1
     done
