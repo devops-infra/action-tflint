@@ -1,5 +1,5 @@
 # Instead of building from scratch pull my other docker image
-FROM devopsinfra/docker-terragrunt:tf-1.0.1-tg-0.31.0 as builder
+FROM devopsinfra/docker-terragrunt:tf-1.1.7-tg-0.36.6 as builder
 
 # Use a clean tiny image to store artifacts in
 FROM alpine:3.15.3
@@ -55,7 +55,7 @@ RUN set -eux ;\
   apk update --no-cache ;\
   apk add --no-cache \
     bash~=5.1.16 \
-    git~=2.34.1 ;\
+    git~=2.34.2 ;\
   rm -rf /var/cache/* ;\
   rm -rf /root/.cache/*
 
