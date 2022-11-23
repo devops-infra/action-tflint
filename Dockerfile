@@ -54,8 +54,8 @@ RUN set -eux ;\
   chmod +x /entrypoint.sh /usr/bin/tflint /usr/bin/terraform ;\
   apk update --no-cache ;\
   apk add --no-cache \
-    bash~=5.1.16 \
-    git~=2.36.3 ;\
+    bash~=5.2.9 \
+    git~=2.38.1 ;\
   rm -rf /var/cache/* ;\
   rm -rf /root/.cache/*
 
