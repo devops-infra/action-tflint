@@ -4,7 +4,7 @@
 
 Dockerized as [devopsinfra/action-tflint](https://hub.docker.com/repository/docker/devopsinfra/action-tflint).
 
-Container is a stripped down image of my other creation - [devops-infra/docker-terragrunt](https://github.com/devops-infra/docker-terragrunt) - framework for managing Infrastructure-as-a-Code.
+Uses the newest version of Terraform and TFLint for the current release.
 
 So it's main use will be everywhere where [Terraform](https://github.com/hashicorp/terraform) is used and is great for statically or actively checking modules' sources.
 
