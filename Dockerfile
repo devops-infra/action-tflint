@@ -1,6 +1,3 @@
-# Instead of building from scratch pull my other docker image
-FROM devopsinfra/docker-terragrunt:tf-1.1.7-tg-0.36.6 as builder
-
 # Use a clean tiny image to store artifacts in
 FROM alpine:3.17.3
 
@@ -46,18 +43,40 @@ LABEL \
   repository="${REPO_URL}"
 
 # Copy all needed files
-COPY --from=builder /usr/bin/tflint /usr/bin/terraform /usr/bin/
 COPY entrypoint.sh /
 
 # Install needed packages
 RUN set -eux ;\
-  chmod +x /entrypoint.sh /usr/bin/tflint /usr/bin/terraform ;\
+  chmod +x /entrypoint.sh ;\
   apk update --no-cache ;\
   apk add --no-cache \
     bash~=5.2.15 \
+    curl~=7.88.1 \
     git~=2.38.4 ;\
   rm -rf /var/cache/* ;\
   rm -rf /root/.cache/*
+
+# Get Terraform by a specific version or search for the latest one
+SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
+# hadolint ignore=SC2015
+RUN VERSION="$( curl -LsS https://releases.hashicorp.com/terraform/ | grep -Eo '/[.0-9]+/' | grep -Eo '[.0-9]+' | sort -V | tail -1 )" ;\
+  for i in {1..5}; do curl -LsS \
+    https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip -o ./terraform.zip \
+    && break || sleep 15; done ;\
+  unzip ./terraform.zip ;\
+  rm -f ./terraform.zip ;\
+  chmod +x ./terraform ;\
+  mv ./terraform /usr/bin/terraform
+
+# Get latest TFLint
+SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
+# hadolint ignore=SC2015
+RUN DOWNLOAD_URL="$( curl -LsS https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E "https://.+?_linux_amd64.zip" )" ;\
+  for i in {1..5}; do curl -LsS "${DOWNLOAD_URL}" -o ./tflint.zip && break || sleep 15; done ;\
+  unzip ./tflint.zip ;\
+  rm -f ./tflint.zip ;\
+  chmod +x ./tflint ;\
+  mv ./tflint /usr/bin/tflint
 
 # Finish up
 CMD ["tflint -v"]
