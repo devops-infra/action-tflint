@@ -1,5 +1,5 @@
 # Use a clean tiny image to store artifacts in
-FROM alpine:3.18.3
+FROM alpine:3.18.4
 
 # Labels for http://label-schema.org/rc1/#build-time-labels
 # And for https://github.com/opencontainers/image-spec/blob/master/annotations.md
