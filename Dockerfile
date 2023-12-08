@@ -50,9 +50,9 @@ RUN set -eux ;\
   chmod +x /entrypoint.sh ;\
   apk update --no-cache ;\
   apk add --no-cache \
-    bash~=5.2.15 \
-    curl~=8.4.0 \
-    git~=2.40.1 ;\
+    bash~=5.2 \
+    curl~=8.5 \
+    git~=2.43 ;\
   rm -rf /var/cache/* ;\
   rm -rf /root/.cache/*
 
