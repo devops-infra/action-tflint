@@ -1,5 +1,5 @@
 # Use a clean tiny image to store artifacts in
-FROM alpine:3.20.3
+FROM alpine:3.21.2
 
 # Labels for http://label-schema.org/rc1/#build-time-labels
 # And for https://github.com/opencontainers/image-spec/blob/master/annotations.md
@@ -51,8 +51,8 @@ RUN set -eux ;\
   apk update --no-cache ;\
   apk add --no-cache \
     bash~=5.2 \
-    curl~=8.10 \
-    git~=2.45 ;\
+    curl~=8.11 \
+    git~=2.47 ;\
   rm -rf /var/cache/* ;\
   rm -rf /root/.cache/*
 
