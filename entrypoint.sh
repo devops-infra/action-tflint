@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 
+set -Eeuo pipefail
+
 # Return code
 RET_CODE=0
 
 WORK_DIR=/github/workspace
+
+echo "Inputs:"
+echo "  fail_on_changes: ${INPUT_FAIL_ON_CHANGES}"
+echo "  dir_filter: ${INPUT_DIR_FILTER}"
+echo "  tflint_config: ${INPUT_TFLINT_CONFIG}"
+echo "  tflint_params: ${INPUT_TFLINT_PARAMS}"
+echo "  run_init: ${INPUT_RUN_INIT}"
 
 # Split dir_filter into array
 IFS=',' read -r -a ARRAY <<< "${INPUT_DIR_FILTER}"

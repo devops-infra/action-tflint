@@ -1,5 +1,5 @@
 name: GitHub Action linting Terraform files
-author: Krzysztof Szyper / ChristophShyper / biotyk@mail.com
+author: Krzysztof Szyper / ChristophShyper / shyper.pro
 description: GitHub Action that will run TFlint on Terraform files
 inputs:
   fail_on_changes:
@@ -13,7 +13,7 @@ inputs:
   tflint_config:
     description: Location of TFLint config file. Defaults to .tflint.hcl.
     required: false
-    default: ".tflint.hcl"
+    default: .tflint.hcl
   tflint_params:
     description: Parameters passed to TFLint. Defaults to none.
     required: false
