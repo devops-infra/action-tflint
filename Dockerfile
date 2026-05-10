@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:1.14 AS terraform
+FROM hashicorp/terraform:1.15 AS terraform
 FROM ghcr.io/terraform-linters/tflint:v0.62.0 AS tflint
 
 # Build
