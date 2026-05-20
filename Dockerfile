@@ -1,5 +1,5 @@
 FROM hashicorp/terraform:1.15 AS terraform
-FROM ghcr.io/terraform-linters/tflint:v0.62.0 AS tflint
+FROM ghcr.io/terraform-linters/tflint:v0.62.1 AS tflint
 
 # Build
 FROM ubuntu:questing-20251217
