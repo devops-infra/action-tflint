@@ -122,6 +122,32 @@ jobs:
 ```
 
 
+### 🎯 Use specific version
+Pick the tag level based on your stability needs:
+- `vX.Y.Z`: exact immutable release (most predictable)
+- `vX.Y`: latest patch within one minor line
+- `vX`: latest patch within one major line
+
+```yaml
+name: Use pinned action version
+on: [push]
+jobs:
+  tflint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: devops-infra/action-tflint@v1.0.2
+        id: pin-patch
+
+      - uses: devops-infra/action-tflint@v1.0
+        id: pin-minor
+
+      - uses: devops-infra/action-tflint@v1
+        id: pin-major
+```
+
+
 ## 🤝 Contributing
 Contributions are welcome! See [CONTRIBUTING](https://github.com/devops-infra/.github/blob/master/CONTRIBUTING.md).
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
