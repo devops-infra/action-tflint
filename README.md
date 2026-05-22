@@ -40,7 +40,7 @@ This action supports three tag levels for flexible versioning:
 ## 📖 API Reference
 ```yaml
     - name: Run the Action
-      uses: devops-infra/action-tflint@v1.0.2
+      uses: devops-infra/action-tflint@v1.0.3
       with:
         dir_filter: modules
 ```
@@ -74,7 +74,7 @@ jobs:
       uses: actions/checkout@v5
 
     - name: Check linting of Terraform files
-      uses: devops-infra/action-tflint@v1.0.2
+      uses: devops-infra/action-tflint@v1.0.3
 ```
 
 ### 🔀 Advanced Example
@@ -93,7 +93,7 @@ jobs:
       uses: actions/checkout@v5
 
     - name: Check linting of Terraform modules
-      uses: devops-infra/action-tflint@v1.0.2
+      uses: devops-infra/action-tflint@v1.0.3
       with:
         tflint_config: modules/.tflint.hcl
         dir_filter: modules/aws,modules/gcp
@@ -115,7 +115,7 @@ jobs:
       uses: actions/checkout@v5
 
     - name: Check linting of Terraform modules
-      uses: devops-infra/action-tflint@v1.0.2
+      uses: devops-infra/action-tflint@v1.0.3
       with:
         tflint_params: "--module --deep"
         dir_filter: modules
@@ -137,7 +137,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: devops-infra/action-tflint@v1.0.2
+      - uses: devops-infra/action-tflint@v1.0.3
         id: pin-patch
 
       - uses: devops-infra/action-tflint@v1.0
