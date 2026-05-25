@@ -7,6 +7,12 @@ RET_CODE=0
 
 WORK_DIR=/github/workspace
 
+INPUT_FAIL_ON_CHANGES="${INPUT_FAIL_ON_CHANGES:-true}"
+INPUT_DIR_FILTER="${INPUT_DIR_FILTER:-.}"
+INPUT_TFLINT_CONFIG="${INPUT_TFLINT_CONFIG:-.tflint.hcl}"
+INPUT_TFLINT_PARAMS="${INPUT_TFLINT_PARAMS:-}"
+INPUT_RUN_INIT="${INPUT_RUN_INIT:-false}"
+
 echo "Inputs:"
 echo "  fail_on_changes: ${INPUT_FAIL_ON_CHANGES}"
 echo "  dir_filter: ${INPUT_DIR_FILTER}"
