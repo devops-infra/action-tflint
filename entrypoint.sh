@@ -5,7 +5,7 @@ set -Eeuo pipefail
 # Return code
 RET_CODE=0
 
-WORK_DIR=/github/workspace
+WORK_DIR="${WORK_DIR:-/github/workspace}"
 
 INPUT_FAIL_ON_CHANGES="${INPUT_FAIL_ON_CHANGES:-true}"
 INPUT_DIR_FILTER="${INPUT_DIR_FILTER:-.}"
@@ -23,6 +23,23 @@ echo "  run_init: ${INPUT_RUN_INIT}"
 # Split dir_filter into array
 IFS=',' read -r -a ARRAY <<< "${INPUT_DIR_FILTER}"
 
+build_tflint_cmd() {
+  local -a cmd
+
+  if [[ -f "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" ]]; then
+    cmd=(tflint -c "${WORK_DIR}/${INPUT_TFLINT_CONFIG}")
+  else
+    cmd=(tflint)
+    if [[ -n "${INPUT_TFLINT_PARAMS}" ]]; then
+      # shellcheck disable=SC2206
+      local extra_args=( ${INPUT_TFLINT_PARAMS} )
+      cmd+=("${extra_args[@]}")
+    fi
+  fi
+
+  printf '%s\n' "${cmd[@]}"
+}
+
 # Go through all dir prefixes
 for PREFIX in "${ARRAY[@]}"; do
     # Go through all matching directories
@@ -34,12 +51,14 @@ for PREFIX in "${ARRAY[@]}"; do
           if [[ "${INPUT_RUN_INIT}" == "true" ]]; then
             terraform init
           fi
-          tflint --init && tflint -c "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" || RET_CODE=1
+          mapfile -t tflint_cmd < <(build_tflint_cmd)
+          tflint --init && "${tflint_cmd[@]}" || RET_CODE=1
         else
           if [[ "${INPUT_RUN_INIT}" == "true" ]]; then
             terraform init
           fi
-          tflint --init && tflint "${INPUT_TFLINT_PARAMS}" || RET_CODE=1
+          mapfile -t tflint_cmd < <(build_tflint_cmd)
+          tflint --init && "${tflint_cmd[@]}" || RET_CODE=1
         fi
         cd "${WORK_DIR}" || RET_CODE=1
     done

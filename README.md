@@ -35,8 +35,6 @@ This action supports three tag levels for flexible versioning:
 - `vX.Y.Z`: fixed to a specific release (e.g., `v1.2.3`).
 
 
-
-
 ## 📖 API Reference
 ```yaml
     - name: Run the Action
