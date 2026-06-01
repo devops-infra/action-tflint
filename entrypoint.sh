@@ -40,6 +40,15 @@ build_tflint_cmd() {
   printf '%s\n' "${cmd[@]}"
 }
 
+handle_tflint_failure() {
+  local directory="$1"
+  if [[ "${INPUT_FAIL_ON_CHANGES}" == "true" ]]; then
+    RET_CODE=1
+  else
+    echo "[WARN] Ignoring TFLint findings in '${directory}' because fail_on_changes=false"
+  fi
+}
+
 # Go through all dir prefixes
 for PREFIX in "${ARRAY[@]}"; do
     # Go through all matching directories
@@ -47,19 +56,27 @@ for PREFIX in "${ARRAY[@]}"; do
         [[ -d "${DIRECTORY}" ]] || break
         cd "${WORK_DIR}/${DIRECTORY}" || RET_CODE=1
         echo -e "\nDirectory: ${DIRECTORY}"
-        if [[ -f "${WORK_DIR}/${INPUT_TFLINT_CONFIG}" ]]; then
-          if [[ "${INPUT_RUN_INIT}" == "true" ]]; then
-            terraform init
-          fi
-          mapfile -t tflint_cmd < <(build_tflint_cmd)
-          tflint --init && "${tflint_cmd[@]}" || RET_CODE=1
-        else
-          if [[ "${INPUT_RUN_INIT}" == "true" ]]; then
-            terraform init
-          fi
-          mapfile -t tflint_cmd < <(build_tflint_cmd)
-          tflint --init && "${tflint_cmd[@]}" || RET_CODE=1
+        if [[ "${INPUT_RUN_INIT}" == "true" ]]; then
+          terraform init || RET_CODE=1
         fi
+
+        mapfile -t tflint_cmd < <(build_tflint_cmd)
+
+        set +e
+        tflint --init
+        init_rc=$?
+        if [[ "${init_rc}" -eq 0 ]]; then
+          "${tflint_cmd[@]}"
+          lint_rc=$?
+        else
+          lint_rc=${init_rc}
+        fi
+        set -e
+
+        if [[ "${lint_rc}" -ne 0 ]]; then
+          handle_tflint_failure "${DIRECTORY}"
+        fi
+
         cd "${WORK_DIR}" || RET_CODE=1
     done
 done

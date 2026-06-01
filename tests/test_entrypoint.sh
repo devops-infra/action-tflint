@@ -42,6 +42,9 @@ printf '%s\n' "$*" >> "${FAKE_TFLINT_CALLS}"
 if [[ "$*" == "--init" ]]; then
   exit 0
 fi
+if [[ "${FAKE_TFLINT_FAIL:-false}" == "true" ]]; then
+  exit 2
+fi
 exit 0
 EOF
 
@@ -101,6 +104,8 @@ EOF
 
 run_case with-config 0 env
 run_case with-params 0 env INPUT_TFLINT_CONFIG="missing.hcl" INPUT_TFLINT_PARAMS="--minimum-failure-severity=error --no-color"
+run_case fail-on-changes-disabled 0 env FAKE_TFLINT_FAIL=true INPUT_TFLINT_CONFIG="missing.hcl" INPUT_FAIL_ON_CHANGES="false"
+run_case fail-on-changes-enabled 1 env FAKE_TFLINT_FAIL=true INPUT_TFLINT_CONFIG="missing.hcl" INPUT_FAIL_ON_CHANGES="true"
 
 config_calls="${TMP_DIR}/with-config/tflint_calls.txt"
 if assert_contains '--init' "${config_calls}" && assert_contains '-c ' "${config_calls}"; then
@@ -114,6 +119,13 @@ if assert_contains '--minimum-failure-severity=error' "${params_calls}" && asser
   pass 'params mode splits args correctly'
 else
   fail 'params mode splits args correctly'
+fi
+
+disabled_stdout="${TMP_DIR}/fail-on-changes-disabled/stdout.txt"
+if assert_contains "[WARN] Ignoring TFLint findings" "${disabled_stdout}"; then
+  pass 'fail_on_changes disabled does not fail action'
+else
+  fail 'fail_on_changes disabled does not fail action'
 fi
 
 if [[ "${FAIL_COUNT}" -gt 0 ]]; then
