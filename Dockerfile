@@ -11,7 +11,7 @@ COPY --from=tflint /usr/local/bin/tflint /usr/bin/tflint
 COPY alpine-packages.txt /tmp/alpine-packages.txt
 
 # Install needed packages
-SHELL ["/bin/sh", "-euxo", "pipefail", "-c"]
+SHELL ["/bin/ash", "-euxo", "pipefail", "-c"]
 # hadolint ignore=DL3018
 RUN set -eux; \
   xargs -r apk add --no-cache < /tmp/alpine-packages.txt; \
