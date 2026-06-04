@@ -24,7 +24,7 @@ inputs:
     default: "true"
 runs:
   using: docker
-  image: docker://devopsinfra/action-tflint:v1.0.4
+  image: docker://devopsinfra/action-tflint:v1.0.5
 branding:
   color: purple
   icon: upload-cloud
