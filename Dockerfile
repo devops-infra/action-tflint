@@ -1,5 +1,5 @@
 FROM hashicorp/terraform:1.15 AS terraform
-FROM ghcr.io/terraform-linters/tflint:v0.63.1 AS tflint
+FROM ghcr.io/terraform-linters/tflint:v0.64.0 AS tflint
 
 # Build
 FROM alpine:3.24.1
