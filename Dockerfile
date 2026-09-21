@@ -2,7 +2,7 @@ FROM hashicorp/terraform:1.16 AS terraform
 FROM ghcr.io/terraform-linters/tflint:v0.64.0 AS tflint
 
 # Build
-FROM alpine:3.24.1
+FROM alpine:3.24.2
 
 # Copy all needed files
 COPY entrypoint.sh /
